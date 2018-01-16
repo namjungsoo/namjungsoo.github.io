@@ -7,6 +7,37 @@
 		<atom:link href="/rss-feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>OpenCL example</title>
+				
+				
+					<description>&lt;p&gt;OpenCL 예제이다. 이 예제에서는 GPU와 CPU를 동시에 사용하고 있다.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Wed, 19 Jul 2017 00:00:00 +0900</pubDate>
+				<link>http://localhost:4000/OpenCL-example.html</link>
+				<guid isPermaLink="true">http://localhost:4000/OpenCL-example.html</guid>
+			</item>
+		
+			<item>
+				<title>NVIDIA CUDA example</title>
+				
+				
+					<description>&lt;p&gt;```cpp
+#include “device_launch_parameters.h”
+#include &lt;cuda_runtime.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#define SIZE 1024&lt;/stdio.h&gt;&lt;/stdlib.h&gt;&lt;/cuda_runtime.h&gt;&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Wed, 19 Jul 2017 00:00:00 +0900</pubDate>
+				<link>http://localhost:4000/NVIDIA-CUDA-example.html</link>
+				<guid isPermaLink="true">http://localhost:4000/NVIDIA-CUDA-example.html</guid>
+			</item>
+		
+			<item>
 				<title>Visual C++ Win32 타이머 CreateTimerQueueTimer 예제</title>
 				
 				

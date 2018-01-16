@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>
+    
+      OpenCL example | Jungsoo Nam
+    
+  </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/syntax.css">
+  <!-- Use Atom -->
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jungsoo Nam" />
+  <!-- Use RSS-2.0 -->
+  <!--<link href="/rss-feed.xml" type="application/rss+xml" rel="alternate" title="Jungsoo Nam | An android developer"/>
+  //-->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-112060364-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <!-- Use Jekyll SEO plugin -->
+  <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>OpenCL example | Jungsoo Nam</title>
+<meta name="generator" content="Jekyll v3.6.2" />
+<meta property="og:title" content="OpenCL example" />
+<meta name="author" content="Jungsoo Nam" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="OpenCL 예제이다. 이 예제에서는 GPU와 CPU를 동시에 사용하고 있다." />
+<meta property="og:description" content="OpenCL 예제이다. 이 예제에서는 GPU와 CPU를 동시에 사용하고 있다." />
+<link rel="canonical" href="http://localhost:4000/OpenCL-example.html" />
+<meta property="og:url" content="http://localhost:4000/OpenCL-example.html" />
+<meta property="og:site_name" content="Jungsoo Nam" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-07-19T00:00:00+09:00" />
+<script type="application/ld+json">
+{"description":"OpenCL 예제이다. 이 예제에서는 GPU와 CPU를 동시에 사용하고 있다.","author":{"@type":"Person","name":"Jungsoo Nam"},"@type":"BlogPosting","url":"http://localhost:4000/OpenCL-example.html","headline":"OpenCL example","dateModified":"2017-07-19T00:00:00+09:00","datePublished":"2017-07-19T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/OpenCL-example.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+
+
+<body>
+
+  <div class="container">
+    <header class="masthead">
+  <h3 class="masthead-title">
+    <a href="/">Jungsoo Nam</a>
+    <small class="masthead-subtitle">An android developer</small>
+    <div class="menu">
+  <nav class="menu-content">
+    
+      <a href="/menu/about.html">About</a>
+    
+      <a href="/menu/writing.html">Writing</a>
+    
+      <a href="/menu/contact.html">Contact</a>
+    
+  </nav>
+  <nav class="social-icons">
+    
+      <a href="https://www.github.com/namjungsoo" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+    
+      <a href="https://twitter.com/namjungsoo" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    
+      <a href="http://www.linkedin.com/in/namjungsoo/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+    
+      <a href="mailto:namjungsoo@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+    
+      <a href="feed.xml" target="_blank"><i class="fa fa-rss-square" aria-hidden="true"></i></a>
+    
+  </nav>
+</div>
+
+  </h3>
+</header>
+
+
+    <div class="post-container">
+      <h1>
+  OpenCL example
+</h1>
+
+
+
+<p>OpenCL 예제이다. 이 예제에서는 GPU와 CPU를 동시에 사용하고 있다.</p>
+
+<p>인텔 CPU에서 테스트를 했는데 인텔 OpenCL 드라이버를 설치하지 않으면, GPU만 가지고 수행을 하기 때문에 ret_num_platforms=1이 된다.</p>
+
+<p>인텔 i5-2500과 지포스 GTX970에서 테스트 하였을때 ret_num_platforms=3이 되었다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+</span>
+<span class="cp">#ifdef __APPLE__
+#include &lt;OpenCL/opencl.h&gt;
+#else
+#include &lt;CL/cl.h&gt;
+#endif
+</span>
+<span class="cp">#define MEM_SIZE (128)
+#define MAX_SOURCE_SIZE (0x100000)
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">cl_device_id</span> <span class="n">device_cpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_device_id</span> <span class="n">device_gpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_context</span> <span class="n">context_cpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_context</span> <span class="n">context_gpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_command_queue</span> <span class="n">command_queue_cpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_command_queue</span> <span class="n">command_queue_gpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_mem</span> <span class="n">memobj_cpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_mem</span> <span class="n">memobj_gpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_program</span> <span class="n">program_cpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_program</span> <span class="n">program_gpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_kernel</span> <span class="n">kernel_cpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_kernel</span> <span class="n">kernel_gpu</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">cl_platform_id</span> <span class="n">platform</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+	<span class="n">cl_uint</span> <span class="n">ret_num_devices</span><span class="p">;</span>
+	<span class="n">cl_uint</span> <span class="n">ret_num_platforms</span><span class="p">;</span>
+	<span class="n">cl_int</span> <span class="n">ret</span><span class="p">;</span>
+
+	<span class="kt">char</span> <span class="n">string_cpu</span><span class="p">[</span><span class="n">MEM_SIZE</span><span class="p">];</span>
+	<span class="kt">char</span> <span class="n">string_gpu</span><span class="p">[</span><span class="n">MEM_SIZE</span><span class="p">];</span>
+
+	<span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">fileName</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"./hello.cl"</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="o">*</span><span class="n">source_str</span><span class="p">;</span>
+	<span class="kt">size_t</span> <span class="n">source_size</span><span class="p">;</span>
+
+	<span class="cm">/* 커널을 포함한 소스 코드를 로드 */</span>
+	<span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">fp</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"Failed to load kernel.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">source_str</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">MAX_SOURCE_SIZE</span><span class="p">);</span>
+	<span class="n">source_size</span> <span class="o">=</span> <span class="n">fread</span><span class="p">(</span><span class="n">source_str</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MAX_SOURCE_SIZE</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+	<span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+	<span class="cm">/* 플랫폼, 디바이스 정보를 얻음 */</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clGetPlatformIDs</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">platform</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret_num_platforms</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clGetDeviceIDs</span><span class="p">(</span><span class="n">platform</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">CL_DEVICE_TYPE_ALL</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">device_gpu</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret_num_devices</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clGetDeviceIDs</span><span class="p">(</span><span class="n">platform</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CL_DEVICE_TYPE_ALL</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">device_cpu</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret_num_devices</span><span class="p">);</span>
+
+	<span class="cm">/* OpenCL 컨텍스트 생성 */</span>
+	<span class="n">context_gpu</span> <span class="o">=</span> <span class="n">clCreateContext</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">device_gpu</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+	<span class="n">context_cpu</span> <span class="o">=</span> <span class="n">clCreateContext</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">device_cpu</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+
+	<span class="cm">/* 커맨드 큐 생성 */</span>
+	<span class="n">command_queue_cpu</span> <span class="o">=</span> <span class="n">clCreateCommandQueue</span><span class="p">(</span><span class="n">context_cpu</span><span class="p">,</span> <span class="n">device_cpu</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+	<span class="n">command_queue_gpu</span> <span class="o">=</span> <span class="n">clCreateCommandQueue</span><span class="p">(</span><span class="n">context_gpu</span><span class="p">,</span> <span class="n">device_gpu</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+
+	<span class="cm">/* 메모리 버퍼 생성 */</span>
+	<span class="n">memobj_cpu</span> <span class="o">=</span> <span class="n">clCreateBuffer</span><span class="p">(</span><span class="n">context_cpu</span><span class="p">,</span> <span class="n">CL_MEM_READ_WRITE</span><span class="p">,</span> <span class="n">MEM_SIZE</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+	<span class="n">memobj_gpu</span> <span class="o">=</span> <span class="n">clCreateBuffer</span><span class="p">(</span><span class="n">context_gpu</span><span class="p">,</span> <span class="n">CL_MEM_READ_WRITE</span><span class="p">,</span> <span class="n">MEM_SIZE</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+
+	<span class="cm">/* 미리 로드한 소스 코드로 커널 프로그램을 생성 */</span>
+	<span class="n">program_cpu</span> <span class="o">=</span> <span class="n">clCreateProgramWithSource</span><span class="p">(</span><span class="n">context_cpu</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">source_str</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">size_t</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">source_size</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+	<span class="n">program_gpu</span> <span class="o">=</span> <span class="n">clCreateProgramWithSource</span><span class="p">(</span><span class="n">context_gpu</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">source_str</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">size_t</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">source_size</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+
+	<span class="cm">/* 커널 프로그램 빌드 */</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clBuildProgram</span><span class="p">(</span><span class="n">program_cpu</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">device_cpu</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clBuildProgram</span><span class="p">(</span><span class="n">program_gpu</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">device_gpu</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+	<span class="cm">/* OpenCL 커널 생성*/</span>
+	<span class="n">kernel_cpu</span> <span class="o">=</span> <span class="n">clCreateKernel</span><span class="p">(</span><span class="n">program_cpu</span><span class="p">,</span> <span class="s">"hello"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+	<span class="n">kernel_gpu</span> <span class="o">=</span> <span class="n">clCreateKernel</span><span class="p">(</span><span class="n">program_gpu</span><span class="p">,</span> <span class="s">"hello"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span>
+
+	<span class="cm">/* OpenCL 커널 파라미터 설정 */</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clSetKernelArg</span><span class="p">(</span><span class="n">kernel_cpu</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">cl_mem</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">memobj_cpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clSetKernelArg</span><span class="p">(</span><span class="n">kernel_gpu</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">cl_mem</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">memobj_gpu</span><span class="p">);</span>
+
+	<span class="cm">/* OpenCL 커널 실행 */</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clEnqueueTask</span><span class="p">(</span><span class="n">command_queue_cpu</span><span class="p">,</span> <span class="n">kernel_cpu</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clEnqueueTask</span><span class="p">(</span><span class="n">command_queue_gpu</span><span class="p">,</span> <span class="n">kernel_gpu</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+	<span class="cm">/* 실행 결과를 메모리 버퍼에서 얻음 */</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clEnqueueReadBuffer</span><span class="p">(</span><span class="n">command_queue_cpu</span><span class="p">,</span> <span class="n">memobj_cpu</span><span class="p">,</span> <span class="n">CL_TRUE</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MEM_SIZE</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="n">string_cpu</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clEnqueueReadBuffer</span><span class="p">(</span><span class="n">command_queue_gpu</span><span class="p">,</span> <span class="n">memobj_gpu</span><span class="p">,</span> <span class="n">CL_TRUE</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MEM_SIZE</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="n">string_gpu</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+	<span class="cm">/* 결과 출력 */</span>
+	<span class="n">puts</span><span class="p">(</span><span class="n">string_cpu</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="n">string_gpu</span><span class="p">);</span>
+
+	<span class="cm">/* 종료 처리 */</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clFlush</span><span class="p">(</span><span class="n">command_queue_cpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clFlush</span><span class="p">(</span><span class="n">command_queue_gpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clFinish</span><span class="p">(</span><span class="n">command_queue_cpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clFinish</span><span class="p">(</span><span class="n">command_queue_gpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseKernel</span><span class="p">(</span><span class="n">kernel_cpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseKernel</span><span class="p">(</span><span class="n">kernel_gpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseProgram</span><span class="p">(</span><span class="n">program_cpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseProgram</span><span class="p">(</span><span class="n">program_gpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseMemObject</span><span class="p">(</span><span class="n">memobj_cpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseMemObject</span><span class="p">(</span><span class="n">memobj_gpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseCommandQueue</span><span class="p">(</span><span class="n">command_queue_cpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseCommandQueue</span><span class="p">(</span><span class="n">command_queue_gpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseContext</span><span class="p">(</span><span class="n">context_cpu</span><span class="p">);</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="n">clReleaseContext</span><span class="p">(</span><span class="n">context_gpu</span><span class="p">);</span>
+
+	<span class="n">free</span><span class="p">(</span><span class="n">source_str</span><span class="p">);</span>
+
+	<span class="c1">// while (1);
+</span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+
+<span class="post-date">
+  Written on
+  
+  July
+  19th,
+  2017
+  by
+  
+    Jungsoo Nam
+  
+</span>
+
+<div class="post-date">Feel free to share!</div>
+  <div class="sharing-icons">
+    <a href="https://twitter.com/intent/tweet?text=OpenCL example&amp;url=/OpenCL-example.html" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=/OpenCL-example.html&amp;title=OpenCL example" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+    <a href="https://plus.google.com/share?url=/OpenCL-example.html" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  </div>
+</div>
+
+
+<div class="related">
+  <h1 >You may also enjoy:</h1>
+  
+  <ul class="related-posts">
+    
+  </ul>
+</div>
+
+
+
+  <section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = "namjungsoo";
+    var disqus_identifier = "/OpenCL-example.html";
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+    </div>
+
+    <footer class="footer">
+  
+    <a href="https://www.github.com/namjungsoo" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+    <a href="https://twitter.com/namjungsoo" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  
+    <a href="http://www.linkedin.com/in/namjungsoo/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+  
+    <a href="mailto:namjungsoo@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+  
+    <a href="feed.xml" target="_blank"><i class="fa fa-rss-square" aria-hidden="true"></i></a>
+  
+  <div class="post-date"><a href="/menu/about.html">Jungsoo Nam | An android developer by Jungsoo Nam</a></div>
+</footer>
+
+
+  </div>
+
+</body>
+</html>
