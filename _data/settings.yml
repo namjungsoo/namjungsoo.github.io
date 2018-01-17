@@ -3,7 +3,7 @@ disqus:
   comments: true
   disqus_shortname: 'namjungsoo'
 
-google-ID: 'UA-112060364-1'
+google-ID: 'UA-61499807-15'
 
 menu:
 - {name: 'About', path: 'menu', url: 'about.html'}
