@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/VisualC-Win32-CreateTimerQueueTimer.html</loc>
+<loc>/VisualC-Win32-CreateTimerQueueTimer.html</loc>
 <lastmod>2016-04-03T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/NVIDIA-CUDA-example.html</loc>
+<loc>/NVIDIA-CUDA-example.html</loc>
 <lastmod>2017-07-19T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/OpenCL-example.html</loc>
+<loc>/OpenCL-example.html</loc>
 <lastmod>2017-07-19T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/menu/about.html</loc>
+<loc>/menu/about.html</loc>
 </url>
 <url>
-<loc>http://localhost:4000/menu/contact.html</loc>
+<loc>/menu/contact.html</loc>
 </url>
 <url>
-<loc>http://localhost:4000/</loc>
+<loc>/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/menu/writing.html</loc>
+<loc>/menu/writing.html</loc>
 </url>
 </urlset>
