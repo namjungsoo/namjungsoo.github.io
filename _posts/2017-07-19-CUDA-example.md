@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NVIDIA CUDA example
+title: CUDA example
 ---
 ```cpp
 #include "device_launch_parameters.h"
