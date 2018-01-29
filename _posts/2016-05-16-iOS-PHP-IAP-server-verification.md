@@ -29,14 +29,14 @@ iOS side
     // Create the JSON object that describes the request
     NSError *error;
     NSDictionary *requestContents = @{
-                                      @"receipt-data": [receipt base64EncodedStringWithOptions:0],
-                                      @"platform": @"ios",
-                                      @"item_id": item_id,
-                                      @"order_id": order_id,
-                                      @"user_id": user_id,
-                                      @"restore": [NSNumber numberWithInt:restore],
-                                      @"sandbox": [NSNumber numberWithInt:0]
-                                      };
+        @"receipt-data": [receipt base64EncodedStringWithOptions:0],
+        @"platform": @"ios",
+        @"item_id": item_id,
+        @"order_id": order_id,
+        @"user_id": user_id,
+        @"restore": [NSNumber numberWithInt:restore],
+        @"sandbox": [NSNumber numberWithInt:0]
+    };
     NSData *requestData = [NSJSONSerialization dataWithJSONObject:requestContents
                                                           options:0
                                                             error:&error];
@@ -80,8 +80,7 @@ iOS side
                     }
                 }
             }
-        }];
-    
+        }];   
 }
 ```
 
