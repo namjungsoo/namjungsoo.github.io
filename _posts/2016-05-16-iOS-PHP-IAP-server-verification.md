@@ -5,7 +5,7 @@ title: iOS PHP 인앱 구매 영수증 서버 검증 예제
 iOS side
 ```objc
 //iOS 
--(void)serverVerfication:(SKPaymentTransaction*)transaction andRestore:(BOOL)isRestore
+-(void)serverVerification:(SKPaymentTransaction*)transaction andRestore:(BOOL)isRestore
 {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *user_id = [userDefault objectForKey:@"uid"];
