@@ -2,4 +2,12 @@
 layout: page
 title: About
 ---
-Lagrange is a minimalist Jekyll. It is intended to have a clean, content focused interface for blog writing. For more information on how to install and use this theme, check out.
+About을 어떻게 쓰는지 몰라서 이제 쓰는 About.  
+  
+전직 3D 그래픽스/윈도우 데스크톱 개발자.  
+현직 안드로이드/아이폰 모바일 앱개발자.  
+
+윈도우에서 남들 Direct3D 사용할때 OpenGL을 끝까지 사용하다가 모바일에 와서 OpenGL ES로 잠시 빛을 보았지만 다시 게임엔진 시대로 회귀하여 현재는 그냥 앱개발자로 살아가는 중.
+중간중간 웹서버, 소켓서버로 외도하기도 하였음.
+
+이제 남들처럼 Github Pages도 만들어보고, 블록체인 딥러닝도 공부해보고 싶음.
