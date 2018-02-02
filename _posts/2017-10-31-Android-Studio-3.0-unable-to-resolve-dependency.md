@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Android Studio 3.0 새 프로젝트 빌드 에러 unable to resolve depencency 
+title: Android Studio 3.0 새 프로젝트 빌드 에러 unable to resolve dependency 
 ---
 안드로이드 스튜디오 3.0이 출시되었다.
 기존의 프로젝트들은 잘 동작하는데 새로운 프로젝트를 생성하였다면 새로운 프로젝트는 컴파일이 안되는 현상이 발생한다.
