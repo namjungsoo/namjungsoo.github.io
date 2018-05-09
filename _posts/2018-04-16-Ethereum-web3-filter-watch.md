@@ -2,9 +2,9 @@
 layout: post
 title: Ethereum web3 filter로 transaction watch하기 
 ---
-이더리움에서 일반 이더를 송금할 때는 이벤트를 받을수가 없다.  
+이더리움에서 일반 이더를 송금할 때는 완료 이벤트를 받을 수가 없다.
 
-따라서 다음과 같이 filter를 걸어서 block안의 transactions에 우리가 원하는 transactionHash가 포함되었는지를 확인함으로서 송금이 완료되었는지를 확인할수 있다.  
+따라서 다음과 같이 filter를 걸어서 block 안의 transactions에 우리가 원하는 transaction Hash가transactionHash가 포함되었는지를 확인함으로써 송금이 완료되었는지를 확인할 수 있다.
 
 아래의 소스코드는 node.js로 작성하였다.
 
