@@ -1,5 +1,5 @@
-/_site
-_site/
-.vscode/
+_site
+.vscode
 Gemfile.lock
 node_modules
+package-lock.json

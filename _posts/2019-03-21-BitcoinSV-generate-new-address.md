@@ -40,5 +40,3 @@ console.log(address.toString())
 testnet과 mainnet의 차이는 단순히 fromRandom, fromPrivateKey를 호춣할 시에 'testnet'이라는 문자열을 추가적으로 전달함으로서 가능하다.  
 
 mainnet은 private key가 K, L로 시작되고 testnet은 c로 시작되는 점이 차이점이다.  
-
-(궁금하신 사항은 댓글을 달아주시면 설명드리겠습니다.)
