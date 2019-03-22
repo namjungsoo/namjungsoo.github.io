@@ -37,6 +37,6 @@ const address = bsv.Address.fromPrivateKey(privateKey)
 console.log(address.toString())
 ```
 
-testnet과 mainnet의 차이는 단순히 fromRandom, fromPrivateKey를 호춣할 시에 'testnet'이라는 문자열을 추가적으로 전달함으로서 가능하다.  
+testnet과 mainnet의 차이는 단순히 fromRandom, fromPrivateKey를 호출할 때 'testnet'이라는 문자열을 추가적으로 전달함으로서 가능하다.  
 
 mainnet은 private key가 K, L로 시작되고 testnet은 c로 시작되는 점이 차이점이다.  
