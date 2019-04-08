@@ -58,8 +58,10 @@ const fromAddress = 'n4pKQauaywwsooZpqQsBA7moTUMb4qNBqj'
 const fromPrivateKey = 'cVnpKJPYfTAAtbqahjPsrz6sjuVyp25itkwJ5H4fg7CLS4DGDivY'
 
 // to address info
+// 송금액은 0.3 BSV
+// fee는 400 sats
 const toAddress = 'mqYoezdaPQVihdRSpquCnBG82m8MwF6i3T'
-const amount = 2999600
+const amount = 30000000
 const fee = 400
 
 const utxos = {
@@ -88,4 +90,9 @@ const str = transaction.serialize(true)
 
 // 여기서 출력되는 str이 transaction이다. 
 console.log(str)
+```
+
+콘솔에 출력되는 raw transaction은 다음과 같다.
+```
+010000000124004ee6d44f8267c68ad8686f2a8a676a236afa15bbea23a28c756534d1350c010000006b483045022100aedcfcfa2a63de2e387bbca842cc0a88f928a0fe8b0c44a965c0a7bed81c360c02205ce661b08a96f9eab145971b3405fcde757e6f005d083c1c8598d48d9b249c72412102a9ea1692b889ab95d425dc71e91eddd9aa8ca618459e9fdb731d8c2ca83152daffffffff0280c3c901000000001976a9146e0ae0d9ba1f9016e1014ad561f7c5aef128114d88acb05bc600000000001976a914ff93969a9e3c1c6f347b106658412919f6829aba88ac00000000
 ```
