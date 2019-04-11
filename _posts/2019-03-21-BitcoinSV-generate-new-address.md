@@ -1,6 +1,6 @@
 ---
 layout: post
-title: BitcoinSV generate new address
+title: BitcoinSV &#35;1 generate new address
 ---
 
 BitcoinSV는 기존의 Bitcoin Core의 라이브러리인 [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib)를 사용할수도 있지만, MoneyButton에서 제공한 [bsv](https://github.com/moneybutton/bsv)가 현재로서는 최선의 선택이다.  

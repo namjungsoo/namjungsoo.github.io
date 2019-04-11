@@ -1,9 +1,9 @@
 ---
 layout: post
-title: BitcoinSV create new transaction
+title: BitcoinSV &#35;2 create new transaction
 ---
 
-이전 글 [BitcoinSV generate new address](/BitcoinSV-generate-new-address.html)에서 BitcoinSV의 새로운 address를 생성하는 방법을 배웠다.
+이전 글 [BitcoinSV &#35;1 generate new address](/BitcoinSV-generate-new-address.html)에서 BitcoinSV의 새로운 address를 생성하는 방법을 배웠다.
 이제는 코인을 전송하는 방법을 배워 보자.
 
 ## 신규 address 생성 
@@ -33,7 +33,7 @@ faucet은 testnet에서만 제공하는 것인데, address를 입력하면 해�
 https://testnet.bitcoincloud.net/address/n4pKQauaywwsooZpqQsBA7moTUMb4qNBqj  
 ![findaddress](./assets/img/findaddress.png)
 
-### tx ID 검색
+### transaction ID 검색
 이때 transaction ID가 표시되는데 transaction ID로 검색해도 똑같이 transaction을 찾을수 있다.
 https://testnet.bitcoincloud.net/tx/0c35d13465758ca223eabb15fa6a236a678a2a6f68d88ac667824fd4e64e0024  
 ![findtx](./assets/img/findtx.png)
@@ -94,5 +94,5 @@ console.log(str)
 
 콘솔에 출력되는 raw transaction은 다음과 같다.
 ```
-010000000124004ee6d44f8267c68ad8686f2a8a676a236afa15bbea23a28c756534d1350c010000006b483045022100aedcfcfa2a63de2e387bbca842cc0a88f928a0fe8b0c44a965c0a7bed81c360c02205ce661b08a96f9eab145971b3405fcde757e6f005d083c1c8598d48d9b249c72412102a9ea1692b889ab95d425dc71e91eddd9aa8ca618459e9fdb731d8c2ca83152daffffffff0280c3c901000000001976a9146e0ae0d9ba1f9016e1014ad561f7c5aef128114d88acb05bc600000000001976a914ff93969a9e3c1c6f347b106658412919f6829aba88ac00000000
+010000000124004ee6d44f8267c68ad8686f2a8a676a236afa15bbea23a28c756534d1350c000000006b483045022100c489a8b6c82f01d97ec93a00259fc1597c18c6d0606900f66e4f02b837a90b9d0220326cac301b8603573fe6d79a2f023f8d02bcdb4d939e18050c18ec0cce254331412102a9ea1692b889ab95d425dc71e91eddd9aa8ca618459e9fdb731d8c2ca83152daffffffff0280c3c901000000001976a9146e0ae0d9ba1f9016e1014ad561f7c5aef128114d88acb05bc600000000001976a914ff93969a9e3c1c6f347b106658412919f6829aba88ac00000000
 ```
