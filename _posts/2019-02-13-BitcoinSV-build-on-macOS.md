@@ -1,6 +1,6 @@
 ---
 layout: post
-title: BitcoinSV build on macOS
+title: BitcoinSV &#35;0 build on macOS
 ---
 ```
 brew install berkeley-db
