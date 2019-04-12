@@ -90,7 +90,9 @@ bitcoin-cli -testnet sendrawtransaction 010000000124004ee6d44f8267c68ad8686f2a8a
 
 현재는 unconfirmed 상태이다.
 ![unconfirmed](./assets/img/unconfirmed.png)
+
 10분정도 기다리면 confirmed가 되며 target 주소에 BSV가 입금이 되어 있을 것이다.
+![confirmed](./assets/img/confirmed.png)
 
 ## 2. blockchain explorer에서 제공하는 public API를 이용하는 방법
 [https://www.bitindex.network](https://www.bitindex.network)를 통해 다음과 같은 화면 같이 raw transaction을 broadcast 시킬수 있다.
