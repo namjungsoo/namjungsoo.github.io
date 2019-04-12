@@ -8,7 +8,7 @@ title: BitcoinSV &#35;2 create new transaction
 
 ## 신규 address 생성 
 일단 이전 글의 소스 코드로 test에서 새로운 address를 2개 생성한다.
-![newaddress](./assets/img/newaddress.png)
+![newaddress](/assets/img/newaddress.png)
 
 ### Address 0 (from)
 private key: cVnpKJPYfTAAtbqahjPsrz6sjuVyp25itkwJ5H4fg7CLS4DGDivY  
@@ -20,8 +20,8 @@ address: mqYoezdaPQVihdRSpquCnBG82m8MwF6i3T
 
 ## 테스트에 사용할 무료 코인 받기 
 그리고 생성된 address 0에 [BitcoinSV Testnet Faucet](https://bitcoincloud.net/faucet) 에서 무료 코인을 받자.  
-![faucet1](./assets/img/faucet1.png)
-![faucet2](./assets/img/faucet2.png)
+![faucet1](/assets/img/faucet1.png)
+![faucet2](/assets/img/faucet2.png)
 
 faucet은 testnet에서만 제공하는 것인데, address를 입력하면 해당 address로 테스트 할 수 있는 코인을 무료로 송금해 준다.
 
@@ -31,12 +31,12 @@ faucet은 testnet에서만 제공하는 것인데, address를 입력하면 해�
 ### address 검색
 검색은 BitcoinSV의 [Testnet explorer](https://testnet.bitcoincloud.net)에서 나의 address로 검색하면 된다.  
 https://testnet.bitcoincloud.net/address/n4pKQauaywwsooZpqQsBA7moTUMb4qNBqj  
-![findaddress](./assets/img/findaddress.png)
+![findaddress](/assets/img/findaddress.png)
 
 ### transaction ID 검색
 이때 transaction ID가 표시되는데 transaction ID로 검색해도 똑같이 transaction을 찾을수 있다.
 https://testnet.bitcoincloud.net/tx/0c35d13465758ca223eabb15fa6a236a678a2a6f68d88ac667824fd4e64e0024  
-![findtx](./assets/img/findtx.png)
+![findtx](/assets/img/findtx.png)
 
 transaction ID는 `0c35d13465758ca223eabb15fa6a236a678a2a6f68d88ac667824fd4e64e0024`이다. 
 

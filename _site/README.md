@@ -1,1 +1,0 @@
-# namjungsoo.github.io
