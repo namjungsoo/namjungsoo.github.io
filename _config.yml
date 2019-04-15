@@ -6,7 +6,7 @@
 name: Jungsoo Nam
 
 # Short bio or description (displayed in the header)
-description: BlockChain Developer
+description: A BlockChain Developer
 
 #
 # Flags below are optional
@@ -53,7 +53,7 @@ footer-links:
   youtube: # channel/<your_long_string> or user/<user-name>
 
 # Text under the icons in footer
-footer-text: © 201 Jungsoo Nam
+footer-text: © 2019 Jungsoo Nam
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
