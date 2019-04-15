@@ -1,9 +1,9 @@
 ---
 layout: post
-title: C# Delegate/Event 정리
+title: C# Delegate와 Event 정리
 ---
-**Delegate/Event**  
-C#은 Java의 interface callback을 쉽게 하기 위한 방법으로 delegate/event를 제공한다. 
+**Delegate와 Event**  
+C#은 Java의 interface callback을 쉽게 하기 위한 방법으로 delegate와 event를 제공한다. 
 
 **Delegate (위임, 대리자)**  
 Delegate는 C의 함수포인터와 같은 방식으로 함수를 저장했다가 파라미터로 전달 또는 호출할수 있는 객체이다.
