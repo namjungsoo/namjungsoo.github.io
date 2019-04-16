@@ -10,14 +10,14 @@ web3.setProvider('http://localhost:8545')
 ```
 ### 현상
 다음과 같은 에러메세지를 볼수 있다.  
-not connected to provider
+`not connected to provider`
 
 다음과 같은 곳에서 자료를 찾을수 있다.
-<https://github.com/ethereum/web3.js/issues/1051>
+https://github.com/ethereum/web3.js/issues/1051
 
 ### 해결 방법
-다음과 같이 package.json을 만들어서 local module로 관리한다.
-npm install web3@0.20.0 --save  
+다음과 같이 package.json을 만들어서 local module로 관리한다.  
+`npm install web3@0.20.0 --save`  
 
 ```javascript
 {
