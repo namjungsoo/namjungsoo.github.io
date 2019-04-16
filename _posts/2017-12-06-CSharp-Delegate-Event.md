@@ -1,6 +1,6 @@
 ---
 layout: post
-title: C# Delegate와 Event 정리
+title: C# delegate와 event 정리
 ---
 **Delegate와 Event**  
 C#은 Java의 interface callback을 쉽게 하기 위한 방법으로 delegate와 event를 제공한다. 
