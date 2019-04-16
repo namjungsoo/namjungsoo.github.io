@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Android Thread에서 Dialog 띄우기 (wait, notify 사용)
+title: Android 쓰레드에서 다이얼로그 띄우기
 ---
-안드로이드에서 쓰레드 루프 중에 쓰레드를 멈추고 Modal Dialog를 받는 방법을 예제로 만들어 보았다. 동기화에 사용되는 오브젝트는 Object lock으로 wait/notify를 사용하였다.
+안드로이드에서 쓰레드 루프 중에 쓰레드를 멈추고 modal dialog를 받는 방법을 예제로 만들어 보았다. 동기화에 사용되는 오브젝트는 object lock으로 wait, notify를 사용하였다.
 
 ```java
 package com.namjungsoo.www.androidthreadtest;
