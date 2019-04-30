@@ -18,8 +18,8 @@ title: Android PHP 인앱 구매 영수증 서버 검증 예제
 다음은 안드로이드에서 구매후 $signature와 $data를 보내줘야 한다.  
 주의할 사항은 $data는 original json을 그대로 보내면 된다.  
 ```java
-        params.put("signature", info.getSignature());
-        params.put("data", info.getOriginalJson());
+    params.put("signature", info.getSignature());
+    params.put("data", info.getOriginalJson());
 ```
 검증 PHP는 다음과 같이 구성한다.
 openssl_verify가 1을 리턴하면 검증이 성공한 것이다.
@@ -31,7 +31,7 @@ function verify_android($signature) {
     $public_key = file_get_contents($public_key_path);
     $public_key_id = openssl_get_publickey ($public_key);
     $decoded_signature = base64_decode($signature);
-    $data="";
+    $data = "";
     if(isset($_POST['data'])) {
         $data = $_POST['data'];        
     }
