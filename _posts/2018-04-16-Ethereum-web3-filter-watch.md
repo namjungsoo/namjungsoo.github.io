@@ -1,6 +1,5 @@
 ---
 layout: post
-comments: true
 title: Ethereum web3 filter로 transaction watch하기 
 ---
 이더리움에서 일반 이더를 송금할 때는 완료 이벤트를 받을 수가 없다.
